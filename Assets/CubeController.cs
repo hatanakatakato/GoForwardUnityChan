@@ -10,6 +10,9 @@ public class CubeController : MonoBehaviour
     // 消滅位置
     private float deadLine = -10;
 
+    //衝突効果音
+    public AudioClip audioClip1;
+
     void Start()
     {
 
@@ -27,4 +30,14 @@ public class CubeController : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "BlockTag" || collision.gameObject.tag == "GroundTag")
+        {
+            GetComponent<AudioSource>().PlayOneShot(this.audioClip1);
+        }
+    }
+
+
 }
